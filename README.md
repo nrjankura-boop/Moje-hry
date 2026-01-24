@@ -1,2 +1,2 @@
 # Moje-hry
-Obsahuje mnou naprogramovane jednoduche hry v Pythone
+Obsahuje mnou naprogramovane jednoduche hry v Pythone a ine aplikacie
