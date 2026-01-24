@@ -1,0 +1,225 @@
+- Ak biely tahal tak bieli skokani, ktori neskakali budu zmazani, plati aj pre cierne
+- Ako urcim skokanov ktori neskakali?
+	+ skokani maju svoju poziciu - takze ked nezmenili poziciu tak neskakali
+	+ lenze skokani mohli urobit tah ktorym neskakali, proste bezny tah takze zmaz
+	  tahanu figurku ak bola skokanom v predchadzajucom stave sachovnice
+	
+	
+- Bieli skokani su preskakovane figurky ciernych skokanov a naopak pokial je mozny skok
+ 
+- ak bola za figurkou superova a aj pred, teda figurka bola medzi superovymi, tak ak sa 
+  superova pohne a uvolni policko na doskok tak druha superova ktora mohla doskocit,
+  (preskocit) zmizne :::: chyba
+  + skokan je pred aj po tahu na svojom mieste, lenze pole na doskok bolo pred obsadene
+    a potom sa uvolnilo -> a skokan bol zmazany
+  + doskakovane pole nie je v obsadenych a zaroven preskakovane pole je prazdne a vtedy
+    zrejme nastava tato chyba ::: preco je skokanom ked preskakovane pole je prazdne?
+  + bije sa mi tu pozicia tahanej figurky, pozicia sa totizto vymaze z obsadenych poli
+    v metode mouse_down a tato pozicia aj figurka mi chyba v metode pre vybratie figurok
+	skokanov
+  
+	
+- ked dve figurky maju naraz preskocit jednu tak ak ju nepreskocia a pohnem jednou zo skakajucich
+  figuriek obycajnym tahom tak zmiznu obidve figurky
+  + riesene je to tak ze ak neskocili dve figurky ktore mali skakat naraz tak sa vyberie
+    iba jedna znich a zmaze sa, ale v tomto pripade ak potiahnem jednou skakajucou figurkou
+	tak zmiznu obidve ktore mali skakat aj ta ktorou som tahal
+  + zaroven ak sa vyberie jedna z dvoch skakajucich figuriek na vymazanie tak sa este zmaze aj
+    tahana figurka ktora neskakala a zaroven bola jednou zo skokanov
+
+
+	
+- biela Dama je na pozicii 2,5
+  cierny Pesiak je na pozicii 3,4
+  cierny Pesiak je na pozicii 3,2
+  + V tejto pozicii ked dama skace tak zmizne dama aj s preskocenym pesiakom :::: chyba
+  + V textovom subore pre nacitanie(situacia na sachovnici) c.1:
+1
+d 0 2 5
+p 1 3 4
+p 1 3 2
+
+- ak naraz mozu brat figurku pesiak aj dama, tak dama ma prednost:
+	+ ak pesiak vazme figurku namiesto damy dama bude odstranena ::: nedeje sa to
+	+ ak urobim pohyb inou figurkou alebo pesiakom ktory mal skakat, popripade damou nebudem 
+	  skakat, ale urobim obycajny tah, tak dama bude tiez odstranena a pesiak ktory 
+	  mal tiez skakat zostane na sachovnici
+	+ Situacia na sachovnici c.2:
+1
+d 0 5 4
+p 0 5 6
+p 1 4 5
+
+	+ Riesme to nasledovne:
+	+ Po tahu sa skontroluje ci dama mala skakat
+	+ ak mala skakat a je na svojom mieste (nie je tahanou figurkou) zmazem ju --- toto je urobene
+	+ ak je tahanou figurkou tak ak neskakala zmazem ju
+	
+
+
+- Ak dve figurky rovnakej farby mozu skakat tak ak jednou preskocim tak druha zmizne lebo
+  neskakala :::: chyba
+	+ Situacia na sachovnici c.3:
+1
+p 0 5 4
+p 1 4 3
+p 1 5 6
+p 0 6 7  
+
+	+ Treba to opravit tak aby nezmizla ani jedna s tych dvoch skakajucich po tahu ktorejkolvek
+	  z nich
+	+ Mam skokanov, ako zistim ze preskakuju rozne figurky?
+	+ Mam skokanov a ich pozicie
+	+ Mam preskakovane figurky, mozno by bolo dobre vediet ich pocet, ak je viac ako 1 tak su
+	  preskakovane rozne figurky
+	+ Pocet roznych skokanov je v self.pred_bieli_skokani teda aj cierni
+	
+- Situacia na sachovnici c.4:
+1
+d 0 5 4
+p 1 4 3
+p 1 2 3
+p 0 3 4 
+
+
+
+ + Ak v tejto situacii vyhodim damou cierneho pesiaka tak 
+   zmizne aj druhy cierny pesiak ::: chyba
+
+- Ak maju skakat cez jednu figurku dve dami tak ak jedna skace tak
+  druha je tiez zmazana :::: chyba
+	+ Situacia na sachovnici c.5:  
+1
+d 0 5 4
+d 0 5 6
+d 1 4 5 
+
+	
+
+- Situacia na sachovnici c.6:
+1
+d 0 5 4
+d 1 4 3
+d 1 5 6
+d 0 6 7 
+
+	+ ak vyhodim damou tak druha dama zmizne tiez ::: chyba
+	
+- Situacia na sachovnici c.7:
+	
+1
+d 0 0 1
+d 0 0 3
+d 0 0 5
+p 1 1 2
+p 1 1 4
+p 1 1 6
+p 0 6 5
+	+ Ak pohnem pesiakom a damy mali skakat tak zmiznu dve damy ::: chyba
+
+
+
+- Toto mam urobene pre vyradenie skokanov ktori neskakali:
+	+ Ak je tahana figurka dama a mala skakat a neskakala tak ju zmaz,
+      ostatnych skokanov ignoruje
+	+ Ak v predchadzajucom riadku nemazal damu a tahana figurka neskakala
+      tak prejdem vsetkych skokanov, ktori neskakali a ak je medzi nimi dama
+	  tak ju zmaze ostatnych skokanov ignoruje
+	+ Ak v predchadzajucom riadku nemazal damu (co znamena ze ziadna dama nemala
+	  skakat) tak ak tahana figurka je skokanom a tahana figurka neskakala zmaz ju
+	  a ostatnycn skokanov ignoruje
+	+ Ak v predchadzajucom riadku nemazal pesiaka a tahana figurka neskakala tak
+	  zmaz pesiaka
+
+
+- Situacia na sachovnici c.8:
+0
+p 1 3 4
+p 0 3 6
+p 1 2 7
+
+	+ ak potiahnem ciernym pesiakom na pole doskoku druhym ciernym pesiakom,
+		tak druhy cierny pesiak aj ked mal skakat nezmizne ::: chyba
+
+- Situacia na sachovnici c.9:
+
+0
+p 1 3 4
+p 0 3 6
+d 1 2 7
+	+ Toto funguje dobre, potom ako pesiak prejde na pole doskoku damy,
+	  dama zmizne lebo mala skakat
+
+- Situacia na sachovnici c.10:
+0
+p 1 2 1
+p 1 2 3
+p 0 3 2
+p 1 1 6
+
+##################################################################	
+------------------------- potialto opravene ----------------
+##################################################################
+
+- Ak damou prejdem na poziciu konca sachovnice tak treba
+  osetrit aby nemazal figurku a na novo ju nemenil na damu
+
+	
+############### Teraz nasleduju moje hlboko spektralne myslienky na temu skakania figuriek damy
+## isiel som na to fakt 'dobre'
+- Pravidla pre neskakane figurky:
+	+ Ak jedna dama mala skakat ale neskakala tak ju zmaz
+	+ Ak dama neskakala tak ju zmaz, ostatne figurky ktore mali skakat ponechaj na sachovnici
+	+ Ak dama skakala ostatni pesiaci aj damy ktory mali skakat zostavaju na sachovnici
+	+ Ak ziadna dama nema skakat ale viaceri pesiaci ano tak :
+	    1. ak pesiaci neskakali tak jeden bude zmazany
+		2. ak jeden z pesiakov skakal tak ostatny zostavaju na sachovnici
+	+ Ak jeden pesiak mal skakat a neskakal zmaz ho
+	
+	Vyroky:
+	d - dama neskakala
+	o - ostatne skakajuce figurky ponechaj na sachovnici
+	b - ziadna dama nema skakat
+	p - pesiak neskakal
+	zd - zmaz damu
+	zp - zmaz pesiaka
+	---------------------------
+	d => zd
+	(d => zd) * o
+	not d => o
+	
+	b * ((p => zp) + (not p => o))
+	p => zp
+	-------------------------------
+	not d + zd
+	(not d + zd) * o
+	d + o
+	
+	b * ((not p + zp) + (p + o))
+	not p + zp
+	---------------------------------------
+	d 	o 	zd
+	0 	0	0
+	0	1	0
+	1	0	1
+	1	1	1
+	zd = d + d*o <- zmaz damu
+	
+	--------------------------------------
+	predpokladam ze figurky maju skakat
+	d - dama skakala
+	p - pesiak skakal
+	b - dama neskace
+	
+	d	p	b	zd	zp
+	0	0	0	1	0
+	0	0	1	0	1
+	0	1	0	1	0
+	0	1	1	0	0
+	1	0	0	0	0
+	1	0	1	0	1
+	1	1	0	0	0	x
+	1	1	1	0	0 	x
+	
+	zd = not d * not p * not b + not d * p * not b = not d * not b 
+	zp = not d * not p * b + d * not p * b = b * not p
