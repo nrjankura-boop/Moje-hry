@@ -1,0 +1,11 @@
+﻿SELECT dieta.id_dieta as id_dieta, nazov_diety,
+ROUND(SUM(tuky /100 * mnozstvo), 1) AS celk_tuky,
+ROUND(SUM(sacharidy / 100 * mnozstvo), 1) AS celk_sacharidy,
+ROUND(SUM(bielkoviny / 100 * mnozstvo), 1) AS celk_bielkoviny,
+ROUND((SUM(tuky /100 * mnozstvo) * 37.656 + SUM(sacharidy / 100 * mnozstvo) * 16.736 + SUM(bielkoviny / 100 * mnozstvo) * 16.736), 0) AS energia,
+dieta.ts AS ts
+FROM potraviny_diety
+LEFT JOIN dieta ON potraviny_diety.id_dieta = dieta.id_dieta
+LEFT JOIN potraviny ON potraviny.id_potravina = potraviny_diety.id_potravina
+GROUP BY id_dieta
+ORDER BY dieta.ts

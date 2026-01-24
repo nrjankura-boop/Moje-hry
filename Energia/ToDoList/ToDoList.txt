@@ -1,0 +1,1 @@
+- Naprogramovat vytvorenie pdf-ka pre vypis udajov diety

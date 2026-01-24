@@ -1,0 +1,110 @@
+Názov diety: Dieta I
+__________________________________________________
+
+Množstvo tuku: 			52.9 g	 (64 g)				Denná spotreba energie: 		11700 kJ 
+Množstvo sacharidov: 		273.1 g	 (193 g)				Strata tuku za deò: 			95.76 g
+Množstvo bielkovín: 		91.6 g	 (145 g)				Strata tuku za týždeò: 			670.32 g
+Energia: 				8094 kJ						Strata tuku za mesiac (30 dní): 	2873 g
+												Strata tuku za rok: 			34952 g 
+__________________________________________________
+
+Jednotlivé potraviny diety a ich hodnoty:
+__________________________________________________
+
+Cottage Cheese (èerstvý syr) - Rajo....................200 g
+S: 6.0 g		T: 8.0 g		B: 26.0 g		E: 837 kJ
+
+Graham rohlík....................180 g
+S: 104.4 g		T: 4.1 g		B: 17.3 g		E: 2192 kJ
+
+Maslo - Flora....................10 g
+S: 0.0 g		T: 7.0 g		B: 0.0 g		E: 264 kJ
+
+Zemiaky ....................800 g
+S: 136.0 g		T: 2.4 g		B: 16.0 g		E: 2634 kJ
+
+¼adový šalát....................20 g
+S: 0.4 g		T: 0.1 g		B: 0.1 g		E: 11 kJ
+
+Uhorka šalátová....................200 g
+S: 5.2 g		T: 0.4 g		B: 1.4 g		E: 126 kJ
+
+Syr Eidam 45%....................50 g
+S: 0.5 g		T: 12.2 g		B: 12.1 g		E: 671 kJ
+
+Mrkva....................200 g
+S: 19.4 g		T: 0.6 g		B: 2.8 g		E: 394 kJ
+
+Tavený smotanový syr 45% tuku v sušine (t.v.s.)....................100 g
+S: 1.2 g		T: 18.0 g		B: 15.9 g		E: 964 kJ
+
+----------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------
+
+
+Prvé jedlo dòa (raòajky)
+--------------------------------------------------
+
+Graham rohlík....................60 g 
+S: 34.8 g		T: 1.4 g		B: 5.8 g		E: 732 kJ 
+
+Zemiaky ....................200 g 
+S: 34.0 g		T: 0.6 g		B: 4.0 g		E: 659 kJ 
+
+Celkové hodnoty:			S: 68.8 g		T: 2.0 g		B: 9.8 g		E: 1391 kJ
+
+
+Druhé jedlo dòa (desiata)
+--------------------------------------------------
+
+Graham rohlík....................60 g 
+S: 34.8 g		T: 1.4 g		B: 5.8 g		E: 732 kJ 
+
+¼adový šalát....................10 g 
+S: 0.2 g		T: 0.0 g		B: 0.1 g		E: 5 kJ 
+
+Celkové hodnoty:			S: 35.0 g		T: 1.4 g		B: 5.9 g		E: 737 kJ
+
+
+Tretie jedlo dòa (obed)
+--------------------------------------------------
+
+Mrkva....................200 g 
+S: 19.4 g		T: 0.6 g		B: 2.8 g		E: 394 kJ 
+
+Syr Eidam 45%....................50 g 
+S: 0.5 g		T: 12.2 g		B: 12.1 g		E: 670 kJ 
+
+Uhorka šalátová....................200 g 
+S: 5.2 g		T: 0.4 g		B: 1.4 g		E: 126 kJ 
+
+Zemiaky ....................400 g 
+S: 68.0 g		T: 1.2 g		B: 8.0 g		E: 1317 kJ 
+
+Celkové hodnoty:			S: 93.1 g		T: 14.4 g		B: 24.3 g		E: 2507 kJ
+
+
+Štvrté jedlo dòa (olovrant)
+--------------------------------------------------
+
+Graham rohlík....................60 g 
+S: 34.8 g		T: 1.4 g		B: 5.8 g		E: 732 kJ 
+
+¼adový šalát....................10 g 
+S: 0.2 g		T: 0.0 g		B: 0.1 g		E: 5 kJ 
+
+Celkové hodnoty:			S: 35.0 g		T: 1.4 g		B: 5.9 g		E: 737 kJ
+
+
+Piate jedlo dòa (veèera)
+--------------------------------------------------
+
+Tavený smotanový syr 45% tuku v sušine (t.v.s.)....................100 g 
+S: 1.2 g		T: 18.0 g		B: 15.9 g		E: 964 kJ 
+
+Zemiaky ....................200 g 
+S: 34.0 g		T: 0.6 g		B: 4.0 g		E: 659 kJ 
+
+Celkové hodnoty:			S: 35.2 g		T: 18.6 g		B: 19.9 g		E: 1623 kJ
+
+

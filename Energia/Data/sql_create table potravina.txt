@@ -1,0 +1,10 @@
+CREATE TABLE `potraviny` (
+  `id_potravina` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kategoria_jedla` int(11) DEFAULT NULL,
+  `nazov` varchar(255) DEFAULT NULL,
+  `sacharidy` varchar(4) DEFAULT NULL,
+  `tuky` varchar(4) DEFAULT NULL,
+  `bielkoviny` varchar(4) DEFAULT NULL,
+  `ts` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id_potravina`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci
