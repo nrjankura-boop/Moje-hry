@@ -1,0 +1,282 @@
+=============================================================
+
+Help k NoroDB_ver1.0.0
+
+==============================================================
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Autor NoroDB_ver1.0.0: Norbert Jankura, nr.jankura@gmail.com
+Datum vytvorenia NoroDB_ver1.0.0: 4. septembra 2025
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Subor NoroDB.ini je subor s nastaveniami pre NoroDB:
+
+Obsahuje jedine nastavenie a to je cesta ku vsetkym 
+databazam:
+
+CESTA_K_DATABAZAM = cesta k databazam/cesta/cesta\cesta
+
+Lomitka mozu byt spatne \ alebo opacne / system v tom nevidi rozdiel.
+Mozu sa miesat.
+
+Pred zacatim pouzivania NoroDB_ver1.0.0 je nutne aby CESTA_K_DATABAZAM adresar
+existoval. Treba ho vytvorit.
+
+Databaza je reprezentovana adresarom, ktory je ulozeny 
+v adresari definovanom v CESTA_K_DATABAZAM .
+
+V reali je CESTA_K_DATABAZAM adresar, kde su vsetky adresare
+ktore su databazou a obsahuju subory tabuliek. 
+
+CESTA_K_DATABAZAM je cesta relativna k adresaru v ktorom je ulozeny
+subor NoroDB_ver1.0.0.py
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Kazdy dotaz sa ukoncuje bodkociarkou ;.
+Ak je dotaz iba jeden, alebo je v rade dotazov posledny, nemusi byt
+ukonceny bodkociarkou ;.
+
+Prikazy ako CREATE ci DATABASE a pod. su CASE insensitive. Teda mozu byt
+CreATE, alebo create a pod. a system to pochopi spravne
+
+V nazvoch databaz, tabuliek a stlpcov tabuliek su povolene iba alfanumericke znaky
+a podtrznik _ . Znaky ktore nie su ASCII nie su povolene. Teda iba znaky
+podla regex [A-Za-z0-9_]. Tieto nazvy sa nesmu zacinat cislom, teda 3tabulka 
+nie je dovolene. Napr. meno_tabulky_c_9 a pod je v poriadku.
+
+Dotazy su vo forme retazca. V retazci moze byt dotaz alebo niekolko dotazov
+v jednom riadku alebo na viacerych riadkoch. Teda napr. dva dotazy mozu byt
+zapisane nasledovne:
+
+CREATE
+DATABASE
+meno_databazy; USE DATABASE meno_databazy;
+
+a pod.
+
+Jednotlive prikazy dotazu oddelujeme medzerou alebo niekolkymi medzerami alebo 
+tabulatorom alebo newline-om (enter). Prazdny priestor medzi prikazmi dotazu sa 
+ignoruje.
+
+Napriklad:
+
+CREATE                DATABASE        meno_databazy; USE 
+DATABASE	meno_databazy;
+
+Avsak je nutne aby prikazy boli oddelene minimalne jednou medzerou, 
+alebo newline-om (enter)
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+Vytvorenie databazy:
+
+CREATE DATABASE meno_databazy;
+
+
+
+Zmazanie databazy:
+
+DROP DATABASE meno_databazy;
+
+
+
+Vyber databazy pre dane dotazy:
+
+USE DATABASE meno_databazy;
+
+
+
+Vytvorenie tabulky:
+
+CREATE TABLE meno_tabulky
+	stlpec1 INT pocet_cifier_celej_casti
+	stlpec2 DEC pocet_cifier_celej_casti pocet_cifier_desatinnej_casti
+	stlpec3 TEXT;
+
+Su iba tri typy stlpcov:
+INT - cele cislo, moze byt aj zaporne, pocet_cifier_celej_casti nie je obmedzene
+DEC - desatinne cislo, moze byt aj zaporne, pocty cifier celej aj desatinnej casti nie su obmedzene
+TEXT - lubovolne dlhy text, dlzka nie je obmedzena, v dotaze CREATE TABLE sa dlzka textu nedefinuje,
+	   teda za definiciou TEXT sa nezadava ziadna dlzka
+
+Obmedzenie cifier a dlzky textu zavisi iba od hardweroveho a softweroveho vybavenia.
+
+Pocet stlpcov je obmedzeny pre kazdu jednu tabulku na 256 stlpcov.
+CREATE TABLE dotaz, musi obsahovat aspon jeden stlpec inak system vyhlasi chybu.
+
+Typy stlpcov INT, DEC a TEXT su CASE insensitive, teda sa mozu pisat lubovolne napr.Int, DEc,
+text a pod.
+
+Priklad:
+			CREATE TABLE meno_tabulky
+                id_meno_tabulky INT 10  
+                meno TEXT   
+                desatinne_cislo DEC 10 10  
+                plat DEC 10   2
+                meno2 TEXT
+                cena DEC 10 10
+                pocet INT 10;
+
+
+
+Zmazanie tabulky:
+
+DROP TABLE meno_tabulky;
+
+
+Zapis dat do tabulky:
+
+INSERT INTO meno_tabulky
+stlpec1 stlpec2 stlpec3
+VALUES
+hodnota1_pre_stlpec1 hodnota1_pre_stlpec2 hodnota1_pre_stlpec3
+hodnota2_pre_stlpec1 hodnota2_pre_stlpec2 hodnota2_pre_stlpec3
+....
+hodnotan_pre_stlpec1 hodnotan_pre_stlpec2 hodnotan_pre_stlpec3;
+
+Pre hodnoty stlpcov plati nasledovne:
+
+Ak je stlpec typu TEXT tak je nutne hodnotu uzatvorit do dvojitych uvodzoviek alebo
+dvojitych apostrofov teda napr. ""Som text pre textovy stlpec"", alebo
+''Som text pre textovy stlpec'', alebo ''„Juro ako sa mas?" spytal som sa.'', teda 
+ak pouzivam uvodzovky tak ako ohranicenie pouzijem apostrofy, ale moze sa pouzit pre tento
+pripad aj ohranicenie retazca uvodzovkami: ""„Juro ako sa mas?" spytal som sa."" a tiez to
+bude fungovat. Problem nastava iba v nasledovnom pripade:
+
+""„Juro ako sa mas?"""
+
+V tomto pripade uvodzovka pre priamu rec na konci za otaznikom je sucastou konecneho
+ohranicenia a posledna uvodzovka vyhlasi chybu, pretoze je za ohranicenim a za nou 
+nenasleduje dalsia uvodzovka ktora by oznacovala zaciatok dalsieho retazca.
+Aby sme sa vyhli tomuto problemu bud pouzijeme apostrofy na ohranicenie alebo to vyriesime
+nasledovne:
+
+""„Juro ako sa mas?" ""
+
+Pridame medzeru cim oddelime ohranicenie od textu v retazci. 
+
+Nepredpokladam ze niekto potrebuje mat retazec v ktorom sa bude vyskytovat dvojita uvodzovka
+alebo dvojity apostrof. Ak vsak niekto v retazci potrebuje dvojitu uvodzovku alebo apostrof, 
+pouzijeme opacne dvojite ohranicenie.
+
+Ak mam ohranicenie ci uz s dvojitymi apostrofami alebo dvojitymi uvodzovkami vo vnutri ohranicenia
+mozem pouzivat lubovolne apostrof alebo uvodzovky nech je ohranicenie akekolvek. Musim dat iba 
+pozor ci som dvojitym apostrofom ci dvojitou uvodzovkou neukoncil ohranicenie skor ako sa konci
+nas retazec. Napr. vid priklad hore ""„Juro ako sa mas?""".
+
+Retazec pre hodnotu stlpca typu TEXT, moze obsahovat aj nove riadky. Pokial ide o lomitko \ tak
+ho je treba zdvojit. V pripade uvodzovky, alebo apostrofu ak je to nutne je treba dat \ pred
+uvodzovku alebo apostrof, \" resp. \' .
+
+Retazce pre hodnoty textovych stlpcov tabulky mozu obsahovat akekolvek znaky UTF-8.
+
+V pripade ciselnych stlpcov plati nasledovne:
+
+Desatinne cislo DEC, (INT v pripade vedeckeho zapisu napr. 1.25e3, alebo 1,25e3) moze byt zapisane 
+s desatinnou bodkou alebo desatinnou ciarkou a system to pochopi.
+
+INT a DEC mozu byt zadane aj vo forme vedeckeho zapisu teda 1.56e-56 alebo 1,26E56,
+kde e resp. E (exponent) znamenoa *10 na cislo, nasledujuce za e resp. E. 
+Napr. 10e25 je to iste ako 10*10**25 podla pythonovskeho matematickeho zapisu.
+
+INT a DEC v pripade vedeckeho zapisu sa do tabulky zapisu ako desatinne cislo s bodkou,
+nie vo forme vedeckeho zapisu. Teda pri nasledovnom citani z tabulky cislo nebude vo 
+forme vedeckeho zapisu a zaroven cislo bude s desatinnou bodkou aj ked bola pri zapise pouzita
+desatinna ciarka.
+
+Hodnota pre stlpec typu DEC moze mat lubovolny pocet desatinnych miest. Zavisi to len od
+hardweroveho a softweroveho vybavenia. Pocet desatinnych miest definujeme pri vytvoreni 
+tabulky CREATE TABLE.
+
+Stlpce v dotaze INSERT INTO mozu byt v roznom poradi, nemusia byt v poradi ako boli zadane
+pri vytvoreni tabulky CREATE TABLE. Samozrejme v akom poradi su stlpce, v takom poradi musia 
+byt aj prisluchajuce hodnoty pre stlpce.
+
+
+Priklad:
+
+		INSERT INTO meno_tabulky
+            id_meno_tabulky meno desatinne_cislo plat meno2 cena pocet
+            VALUES
+            1 ''Norbert 'Uzasny' 
+            a "neprekonatelny"'' -23.56e-5 -5000.25 ""Jankura"" 999,00044e3 100
+            2 ''Peter'' 0.5 500,56 ''Kery d'Arno'' 25.3 45
+			3 "Jano Velky" -0.450859 1500,45 'Potter Harry' 25,45 879;
+			
+alebo napriklad v jednom riadku:
+	
+	INSERT INTO meno_tabulky id_meno_tabulky meno VALUES 1 "Meno1" 2 "Meno2" 3 "Meno3";
+
+	
+	
+Nacitanie a vypis dat z tabulky:
+
+SELECT * FROM meno_tabulky;
+
+alebo
+
+SELECT stlpec1 stlpec2 stlpec3 FROM meno_tabulky;
+
+* znamena vsetky stlpce, ktore su v danej tabulke a v poradi v akom boli zadane pri vytvoreni
+tabulky dotazom CREATE TABLE.
+
+Stlpce v dotaze SELECT mozu byt v roznom poradi, nemusia byt v poradi ako boli zadane
+pri vytvoreni tabulky CREATE TABLE. Nemusia byt zadane vsetky stlpce. Minimalne vsak musi
+byt zadany aspon jeden stlpec alebo *.
+
+Vypis je do shell-u (promptu). Vypisu sa riadky cislovane od 1, podla poradia v akom
+boli pridavane riadky dotazom INSERT INTO a stlpce v poradi v akom boli zadane v dotaze
+SELECT.
+
+Priklad:
+
+			SELECT 
+               meno2 desatinne_cislo cena id_meno_tabulky plat meno pocet
+            FROM 
+                meno_tabulky;
+				
+alebo do jedneho riadku:
+
+			SELECT meno2 desatinne_cislo cena FROM meno_tabulky;
+
+
+			
+Pridanie komentara, vyradenie dotazu z vykonavania:
+
+Riadok v rade dotazov zacinajuci # sa cely ignoruje a nevykona sa.
+
+Toto je sposob ako pridame komentar resp. vyradime nejaky dotaz z vykonania.
+
+Ak chceme zakomentovat viac riadkov musime na zaciatok kazdeho riadka pridat znak #.
+Nie je vytvoreny iny sposob ako zakomentovat viac riadkov naraz.
+
+Priklad:
+	# Nasledovny dotaz sluzi na vyber konkretnej databazy
+	USE DATABASE meno_databazy;
+	#SELECT * FROM meno_tabulky;
+	#CREATE TABLE nova_tabulka stlpec1 INT 10 stlpec2 TEXT stlpec3 DEC 10 2;
+
+V uvedenom priklade sa vykona iba dotaz USE ... a dotazy SELECT a CREATE sa nevykonaju.
+Taktiez uvodny komentar sa tiez nevykona (# Nasledovny dotaz ...).
+
+
+			
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+			
+ZHRNUTIE:
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+NoroDB_ver1.0.0.py zahrna nasledovne dotazy:
+
+1. Vytvorenie databazy
+2. Zmazanie databazy
+3. Vyber databazy ktora sa bude pouzivat pre dotazy
+4. Vytvorenie tabulky
+5. Zmazanie tabulky
+6. Zapis dat do tabulky
+7. Jednoduchy vypis stlpcov z jednej tabulky bez podmienok pre stlpce 
+8. Pridanie komentara resp. vyradenie napisaneho dotazu v rade dotazov
+   z vykonania
