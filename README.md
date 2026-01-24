@@ -1,2 +1,2 @@
 # Moje-hry
-Obsahuje mnou naprogramovane jednoduche hry v Pythone
+Energia je tkinterovska aplikacia s vyuzitim databazy MySQL naprogramovana ako MVC aplikacia
