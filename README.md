@@ -1,2 +1,2 @@
 # Moje-hry
-Obsahuje mnou naprogramovane jednoduche hry v Pythone a ine aplikacie
+Kazdy pozna hru tetris. Naprogramoval som ju z nudy v Pythone. Ovlada sa sipkami.
