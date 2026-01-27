@@ -1,2 +1,2 @@
 # Moje-hry
-Kazdy pozna hru tetris. Naprogramoval som ju z nudy v Pythone. Ovlada sa sipkami.
+Kazdy pozna hru tetris. Ovlada sa sipkami.
